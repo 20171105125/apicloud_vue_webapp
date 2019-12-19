@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no, email=no, data=no, address=no">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/my.css">
+
+  <title>用户登录</title>
+</head>
+<body>
+  <div id="app">
+    <div class="container container-small">
+      <div class="title-block">
+        <h1>
+          登录
+          <small>没有账号？
+            <a href="#" onclick="open_reg()">注册</a>
+          </small>
+        </h1>
+      </div>
+      <form class="form-group" action="">
+        <div class="form-part">
+          <label>手机号码</label>
+          <input id="phone_num" type="text" class="form-control" placeholder="请输入手机号" v-model="username">
+        </div>
+        <div class="form-part">
+          <label>密码</label>
+          <input id="password" type="password" class="form-control" placeholder="请输入密码" v-model="password">
+        </div>
+        <div class="form-part">
+          <label>登录</label>
+          <button class="btn btn-primary btn-block form-control" type="button" @click="login()">提交</button>
+        </div>
+      </form>
+      <div class="form-group">
+        <span class="fgtpasswd" onclick="open_forgetpassword()">
+          <a href="#">忘记密码？</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <footer>
+    © 2019 XXXX 中国互联网举报中心京ICP证xxxx号京ICP备xxxxxxx号-x公安安备
+  </footer>
+  <script src="../script/vue.js"></script>
+  <script src="../script/api.js"></script>
+  <script src="../script/common.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        username: '',
+        password: '',
+        deviceid: '',
+        list: [
+          { text: 'Add som todos' }
+        ]
+      },
+      methods: {
+        login: function (){
+          if(!vm.username){
+            alert('填手机号');
+            return false;
+          }
+          if(!vm.password){
+            alert('密码不为空');
+            return false;
+          }
+          api.ajax({
+              url: login_url,
+              method: 'post',
+              timeout: 30,
+              dataType: 'json',
+              returnAll: false,
+              data: {
+                  values: {
+                      username: vm.username,
+                      password: vm.password,
+                      deviceid: vm.deviceid
+                  }
+              }
+          }, function(ret, err) {
+              if (ret) {
+                  console.log(JSON.stringify(ret));
+                  if(ret.status == 1){
+                    var minfo = ret.data.minfo;
+                    $api.setStorage('minfo',minfo);
+                    $api.setStorage('token',minfo.token);
+                    alert("登录succeed");
+                    $api.apiEvent({
+                      name: 'usercenter_init'
+                    });
+                    setTimeout(function(){
+                      api.closewin({
+                        name: 'login_win'
+                      })
+                    },100);
+                  } else {
+                    alert("网络异常");
+                    console.log(JSON.stringify(ret));
+                  }
+              } else {
+                  console.log(JSON.stringify(err));
+              }
+          });
+        }
+
+        // open_reg: function(){
+        //   alert('11111111111111111111111');
+        //   api.openWin({
+        //     name: 'reg_form',
+        //     url: 'Thetext13://html/reg_form.html',
+        //     pageParam: {
+        //       name: 'pageparamname'
+        //     }
+        //   });
+        // },
+        //
+        // open_forgetpassword: function(){
+        //   alert('222222222222222222');
+        //   api.openWin({
+        //     name: 'forgetpassword_win',
+        //     url: 'Thetext13://html/reset_password.html',
+        //     pageParam: {
+        //       name: 'pageparamname'
+        //     }
+        //   });
+        // }
+      }
+    });
+
+
+    apiready = function(){
+      vm.deviceid = api.deviceId;
+    }
+
+    function open_reg(){
+      setTimeout(api.openWin({
+        name: 'reg_form',
+        url: '../html/reg_form.html',
+        pageParam: {
+          name: 'pageparamname'
+        }
+      }),100);
+  }
+
+    function open_forgetpassword(){
+      setTimeout(api.openWin({
+        name: 'forgetpassword_win',
+        url: '../html/reset_passwd.html',
+        pageParam: {
+          name: 'pageparamname'
+        }
+      }),100);
+  }
+
+  </script>
+</body>
+</html>

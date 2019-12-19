@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no, email=no, data=no, address=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>新用户注册</title>
+
+
+  <link rel="stylesheet" href="../css/api.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/aui-flex.css">
+  <link rel="stylesheet" href="../css/aui.2.0.css">
+
+  <!-- <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/my.css"> -->
+
+</head>
+<body>
+  <div id="app">
+
+    <div class="aui-margin-t-5">
+
+      <div class="aui-list aui-media-list" v-if="token">
+        <div class="aui-list-item aui-list-item-middle">
+          <div class="aui-media-list-item-inner">
+            <div class="aui-list-item-media" style="width: 3rem;">
+              <img src="../image/th1.png" alt="">
+            </div>
+            <div class="aui-list-item-inner aui-list-item-arrow">
+              <div class="aui-list-item-text">
+                <div>
+                  <span class="aui-list-item-title aui-font-size-14"> {{ minfo.moblie }}</span>
+                  <img src="../image/icon_shiming.png" alt="" style="width: 14px; height: 14px;">
+                  <img src="../image/icon_zizhi.png" alt="" style="width: 14px; height: 14px;">
+                </div>
+              </div>
+              <div class="aui-list-item-text aui-font-size-12">
+                Account Balance : {{ minfo.money }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="aui-list aui-media-list" onclick="open_login()" v-else>
+        <div class="aui-list-item aui-list-item-middle">
+          <div class="aui-media-list-item-inner">
+            <div class="aui-list-item-media" style="width: 3rem;">
+              <img src="../image/th1.png" alt="">
+            </div>
+            <div class="aui-list-item-inner aui-list-item-arrow">
+              <div class="aui-list-item-text">
+                <div>
+                  <span class="aui-list-item-title aui-font-size-14">Welcome to _XoOoX_</span>
+                </div>
+              </div>
+              <div class="aui-list-item-text aui-font-size-12">
+                plz Login
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="aui-margin-t-10 white-bg">
+      <div class="aui-margin-l-10 aui-margin-r-10 aui-border-b">
+        <div class="aui-flex-col aui-flex-middle tab-height">
+          <img src="../image/me_icon_collect.png" alt="" class="icon-me-l">
+          <span class="aui-margin-r-10 aui-font-size-14">My Collection</span>
+        </div>
+      </div>
+      <div class="aui-margin-l-10 aui-margin-r-10 aui-border-b">
+        <div class="aui-flex-col aui-flex-middle tab-height">
+          <img src="../image/me_icon_moving.png" alt="" class="icon-me-l">
+          <span class="aui-margin-r-10 aui-font-size-14">My Circle</span>
+        </div>
+      </div>
+      <div class="aui-margin-l-10 aui-margin-r-10 aui-border-b">
+        <div class="aui-flex-col aui-flex-middle tab-height">
+          <img src="../image/me_icon_dingdan.png" alt="" class="icon-me-l">
+          <span class="aui-margin-r-10 aui-font-size-14">Member Management</span>
+        </div>
+      </div>
+      <div class="aui-margin-l-10 aui-margin-r-10" @click="loginout()" v-if="token">
+        <div class="aui-flex-col aui-flex-middle tab-height">
+          <img src="../image/me_icon_revise.png" alt="" class="icon-me-l">
+          <span class="aui-margin-r-10 aui-font-size-14">Quit</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- <footer>
+    © 2019 XXXX 中国互联网举报中心京ICP证xxxx号京ICP备xxxxxxx号-x公安安备
+  </footer> -->
+  <script src="../script/api.js"></script>
+  <script src="../script/common.js"></script>
+  <script src="../script/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        token: '',
+        minfo: [],
+      },
+      methods: {
+        init: function(){
+          console.log(vm.token);
+          vm.token = $api.getStorage('token');
+          vm.minfo = $api.getStorage('minfo');
+        },
+        loginout: function(){
+          api.ajax({
+              url: loginout_url,
+              method: 'post',
+              timeout: 30,
+              dataType: 'json',
+              returnAll: false,
+              data: {
+                  values: {
+                      token: vm.token,
+                      minfo: api.minfo
+                  },
+              }
+          }, function(ret, err) {
+              if (ret) {
+                if(ret.status == 1){
+                  $api.getStorage('token',null);
+                  $api.getStorage('token',null);
+                  vm.init();
+                } else {
+                  alert(ret.msg);
+                }
+                console.log(JSON.stringify(ret));
+              } else {
+                console.log(JSON.stringify(err));
+              }
+          });
+        }
+      }
+    });
+
+    function open_login(){
+      setTimeout(api.openWin({
+        name: 'login_win',
+        url: '../html/login_form.html',
+        pageParam: {
+          name: 'pageparamname'
+        }
+      }),100);
+  }
+
+  apiready = function(){
+    vm.init();
+    api.setRefreshHeaderInfo({
+        visible: true,
+        loadingImg: 'widget://image/refresh.png',
+        bgColor: '#db0d3a',
+        textColor: '#fff',
+        textDown: '下拉刷新...',
+        textUp: '松开刷新...',
+        showTime: true
+    }, function(ret, err) {
+        vm.init();
+        setTimeout("api.refreshHeaderLoadDone()",500);
+    });
+    api.addEventListener({
+        name: 'usercenter_init'
+    }, function(ret, err) {
+        console.log('chufale yonghu infode chushihua');
+        vm.init();
+    });
+  };
+  </script>
+</body>
+</html>

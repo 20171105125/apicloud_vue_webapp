@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no, email=no, data=no, address=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>新用户注册</title>
+
+
+  <!-- <link rel="stylesheet" href="../css/api.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/aui-flex.css"> -->
+  <link rel="stylesheet" href="../css/aui.2.0.css">
+
+  <!-- <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/my.css"> -->
+
+</head>
+<body>
+  <div id="app" class="aui-content aui-margin-t-5" v-cloak>
+    <div class="aui-list aui-media-list">
+      <transition-group name="list" tag="p">
+        <div class="aui-list-item" v-for="(vo,index) in list" v-bind:key="index">
+          <div class="aui-media-list-item-inner" @click="open_content(index)">
+            <div class="aui-list-item-inner">
+              <div class="aui-list-item-text">
+                <div class="aui-list-item-title aui-font-size-14">
+                  {{ vo.title }}
+                </div>
+              </div>
+              <div class="aui-info aui-padded-b-0">
+                <div class="aui-info-item aui-font-size-12">
+                  <img src="" alt="">
+                  <span class="aui-margin-l-5">Hanabi</span>
+                </div>
+                <div class="aui-info-item aui-font-size-12">
+                  {{ vo.create_time|time }}
+                </div>
+              </div>
+            </div>
+            <div class="aui-list-item-media">
+              <img :src="vo.url" alt="">
+            </div>
+          </div>
+        </div>
+      </transition-group>
+    </div>
+
+  </div>
+  <!-- <footer>
+    © 2019 XXXX 中国互联网举报中心京ICP证xxxx号京ICP备xxxxxxx号-x公安安备
+  </footer> -->
+  <script src="../script/api.js"></script>
+  <script src="../script/common.js"></script>
+  <script src="../script/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        cid: '',
+        p: 1,
+        list: [
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "5464545649",
+            "url": "../image/001.jpg"
+          },
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "1111222233",
+            "url": "../image/001.jpg"
+          },
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "1111222233",
+            "url": "../image/001.jpg"
+          },
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "1111222233",
+            "url": "../image/001.jpg"
+          },
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "1111222233",
+            "url": "../image/001.jpg"
+          },
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "1111222233",
+            "url": "../image/001.jpg"
+          },
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "1111222233",
+            "url": "../image/001.jpg"
+          },
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "1111222233",
+            "url": "../image/001.jpg"
+          },
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "1111222233",
+            "url": "../image/001.jpg"
+          },
+          {
+            "id": "24",
+            "title": "POIYHYHYH999",
+            "create_time": "1111222233",
+            "url": "../image/001.jpg"
+          }
+        ]
+      },
+      methods: {
+        init: function(){
+          api.ajax({
+              url: article_list_url,
+              method: 'post',
+              timeout: 30,
+              dataType: 'json',
+              returnAll: false,
+              data: {
+                  values: {
+                      cid: vm.cid,
+                      p: vm.p
+                  },
+              }
+          }, function(ret, err) {
+              if (ret) {
+                  console.log(JSON.stringify(ret.data));
+                  if(vm.p == 1){
+                    vm.list = ret.data.list;
+                  } else {
+                    if(ret.data.list.length > 0){
+                      for(var i = 0; i < ret.data.list.length; i++){
+                        vm.list.push(ret.data.list[i]);
+                      }
+                    } else {
+                      api.toast({
+                          msg: 'NO hav Data!',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+                      return false;
+                    }
+                  }
+                  vm.p += 1;
+              } else {
+                  console.log(JSON.stringify(err));
+              }
+          });
+        },
+        open_content:function(index){
+          api.openWin({
+              name: 'content_win',
+              url: './page1.html',
+              pageParam: {
+                  id: vm.list[index].id,
+                  title: vm.list[index].title
+              }
+          });
+        }
+      }
+    });
+
+  //   function open_login(){
+  //     setTimeout(api.openWin({
+  //       name: 'login_win',
+  //       url: '../html/login_form.html',
+  //       pageParam: {
+  //         name: 'pageparamname'
+  //       }
+  //     }),100);
+  // }
+
+  apiready = function(){
+    vm.cid = api.pageParam.cid;
+    vm.init();
+
+    api.setRefreshHeaderInfo({
+        visible: true,
+        loadingImg: '../image/refresh.png',
+        bgColor: '#db0d3a',
+        textColor: '#fff',
+        textDown: '下拉刷新...',
+        textUp: '松开刷新...',
+        showTime: true
+    }, function(ret, err) {
+        vm.p = 1;
+        vm.init();
+        setTimeout("api.refreshHeaderLoadDone()",500);
+    });
+
+    api.addEventListener({
+        name: 'scrolltobottom',
+        extra:{
+          threshold:0
+        }
+    }, function(ret, err) {
+        vm.init();
+    });
+
+    api.addEventListener({
+        name: 'init_article_list',
+    }, function(ret, err) {
+        var cid = ret.value.cid;
+        if(vm.cid == cid){
+          return false;
+        } else {
+          vm.cid = cid;
+          vm.p = 1;
+          vm.init();
+        }
+    });
+
+  };
+  </script>
+</body>
+</html>

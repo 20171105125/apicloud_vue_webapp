@@ -1,0 +1,289 @@
+html, body {
+    font-size: 14px;
+    background: #f8f8f8;
+}
+
+.hover {
+    opacity: .8;
+}
+
+.flex-wrap {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-con {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.flex-vertical {
+    -webkit-box-orient: vertical;
+    -webkit-flex-flow: column;
+    flex-flow: column;
+}
+
+.border-t,
+.border-b {
+    position: relative;
+}
+
+.border-t:before,
+.border-b:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #ddd;
+    right: 0;
+    height: 1px;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.border-b:after {
+    top: auto;
+    bottom: 0;
+}
+
+#wrap {
+    height: 100%;
+}
+
+/*通用颜色定义*/
+
+.cyell-bg {
+    background: #FF9800;
+}
+
+.cyell-color {
+    color: #FF9800;
+}
+
+.cyell-border {
+    border: 1px solid #FF9800;
+}
+
+.cblue-bg {
+    background: #0064B0 !important;
+}
+
+.cblue-color {
+    color: #0064B0;
+}
+
+.cblue-border {
+    border: 1px solid #0064B0;
+}
+
+.cblue-border-lr {
+    border-left: 1px solid #0064B0;
+    border-right: 1px solid #0064B0;
+}
+
+.cligrey-bg {
+    background: #f8f8f8;
+}
+
+/*白色背景*/
+.white-bg {
+    background: white !important;
+}
+
+.lightgrey-bg {
+    background: #f0f0f8;
+}
+
+.grey-border {
+    border: 1px solid #f1f1f1 !important;
+}
+
+/*文字黑色描边*/
+.black-shadow {
+    text-shadow: #000 1px 0 0;
+}
+
+.grey-bg {
+    background: #dddddd !important;
+}
+
+.white-font {
+    color: white;
+}
+
+.black-font {
+    color: #000000;
+}
+
+.ivory-font {
+    color: #EAEAEA;
+}
+
+.grey-font {
+    color: grey;
+}
+
+.dgrey-font {
+    color: #505050 !important;
+}
+
+.aui-font-size-10 {
+    font-size: 0.4rem !important;
+}
+
+.padded-2 {
+    padding: 2px;
+}
+
+.padded-lr-2 {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+/*实名认证图标*/
+.shiming-icon {
+    height: 12px;
+    width: 12px;
+}
+
+.icon-me-l {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+}
+
+.button-height {
+    padding: 0.40rem 0.6rem !important;
+}
+
+/*tab图标样式*/
+.tab-icon {
+    height: 28px !important;
+    width: 28px !important;
+}
+
+.tab-icon-s1 {
+    height: 20px !important;
+    width: 20px !important;
+}
+
+.tab-height {
+    height: 60px;
+}
+
+/*系列课程文字样式*/
+.lesson-xl {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+}
+
+/*课程文字样式*/
+.lesson-kc {
+    position: absolute;
+    top: 26px;
+    left: 20px;
+}
+
+.vip-div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.vip-icon {
+    height: 16px;
+}
+
+.join-div {
+    position: absolute;
+    bottom: 25px;
+    right: 14px;
+    border-radius: 5px;
+    width: 75px;
+    text-align: center;
+    border: 1px #c0c0c0 solid;
+    border-radius: 5px;
+}
+
+/*参加文字样式*/
+.al-join-text {
+    color: #c0c0c0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.no-join-text {
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.price-div {
+    position: absolute;
+    border-radius: 5px;
+    width: 75px;
+    text-align: center;
+    bottom: 55px;
+    right: 14px;
+}
+
+.price-text {
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.coll-div {
+    position: absolute;
+    width: 75px;
+    text-align: center;
+    border: 1px #c0c0c0 solid;
+    border-radius: 5px;
+    bottom: 25px;
+    right: 14px;
+}
+
+.al-coll-text {
+    color: #c0c0c0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.no-coll-text {
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.aui-font-size-30 {
+    font-size: 1.5rem !important;
+}
+
+.aui-margin-t-30 {
+    margin-top: 1.5rem !important;
+}
+
+.head-icon-normal {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+}
+
+.small-tip-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.mid-tip-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.large-tip-icon {
+    width: 32px;
+    height: 32px;
+}

@@ -1,0 +1,33 @@
+
+.container-small .title-block {
+  margin-top: 60px;
+}
+
+footer {
+  margin-top: 20px;
+  padding: 50px 0;
+  text-align: center;
+  color: #999;
+}
+
+.container-small {
+  max-width: 500px;
+}
+
+.btn-primary{
+  background-color: #ea0c3c;
+  border-color: #db0d3a;
+}
+
+.btn-primary:hover{
+  background-color: #db0d3a;
+  border-color: #db0d3a;
+}
+
+.form-part {
+  padding-top: 6px;
+}
+
+.terms_content {
+  padding: 30px 10px;
+}

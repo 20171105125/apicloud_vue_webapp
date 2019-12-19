@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>XXXXX</title>
+  <link rel="stylesheet" href="../css/aui.2.0.css">
+  <link rel="stylesheet" href="../css/swiper.min.css">
+  <style type="text/css">
+    #slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    #slider .swiper-slider {
+      position: relative;
+      text-align: center;
+    }
+    #slider img {
+      max-width: 100%;
+    }
+    #slider .swiper-pagination {
+      position: absolute;
+      z-index: 20;
+      bottom: 10px;
+      width: 100px;
+      text-align: center;
+      left: 40%;
+    }
+    #slider .swiper-pagination-bullet {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 5px;
+      background: #fff;
+      margin: 0 2px;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+    #slider .swiper-pagination-bullet-active {
+      background: #ff6600;
+    }
+  </style>
+</head>
+<body>
+  <div class="aui-content" id="app">
+    <div class="swipe" id="slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" v-for="(vo,index) in list">
+          <img :src="vo.spic"/>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+  <script src="../script/vue.js" charset="utf-8"></script>
+  <script src="../script/swiper.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        list: [
+          {
+            "zid": "40",
+            "sname": "This is test",
+            "spic": "../image/001.jpg",
+            "IIndex": "0",
+            "ILocation": "2",
+            "Status": "True"
+          },
+          {
+            "zid": "42",
+            "sname": "nianhui",
+            "spic": "../image/002.jpg",
+            "IIndex": "0",
+            "ILocation": "2",
+            "Status": "True"
+          },
+          {
+            "zid": "1",
+            "sname": "",
+            "spic": "../image/003.jpg",
+            "IIndex": "1",
+            "ILocation": "2",
+            "Status": "True"
+          },
+          {
+            "zid": "2",
+            "sname": "",
+            "spic": "../image/004.jpg",
+            "IIndex": "1",
+            "ILocation": "2",
+            "Status": "True"
+          }
+        ]
+      }
+    });
+
+    setTimeout(function () {
+      var slider = new Swiper('#slider',{
+        autoplay: 3000,
+        visibilityFullFit: true,
+        loop: true,
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+      })
+    },100);
+
+  </script>
+</body>
+</html>

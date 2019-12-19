@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no, email=no, data=no, address=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>新用户注册</title>
+
+  <link rel="stylesheet" href="../css/api.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/aui-flex.css">
+  <link rel="stylesheet" href="../css/aui.2.0.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/my.css">
+
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav">
+    <a class="aui-pull-left aui-btn" onclick="closewin()">
+      <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">{{ title }}</div>
+  </header>
+
+  <script src="../script/api.js"></script>
+  <script src="../script/common.js"></script>
+  <script src="../script/vue.js"></script>
+  <script type="text/javascript">
+    // var vm = new Vue({
+    //   el: 'header',
+    //   data: {
+    //     is_openFrame: 0,
+    //     title: '',
+    //     pid: '',
+    //     list: [],
+    //     cid: ''
+    //   },
+    //   methods: {
+    //     init: function(){
+    //       // console.log('111111111111111111111111111');
+    //       api.ajax({
+    //           url: cate_list_two_url,
+    //           method: 'post',
+    //           timeout: 30,
+    //           dataType: 'json',
+    //           returnAll: false,
+    //           data: {
+    //               values: {
+    //                   pid: vm.pid
+    //               },
+    //           }
+    //       }, function(ret, err) {
+    //           if (ret) {
+    //               vm.list = ret.data;
+    //               console.log(JSON.stringify(vm.list));
+    //               var items = [];
+    //               for(var i = 0; i < vm.list.length; i++){
+    //                 var item = {
+    //                   title: vm.list[i].title,
+    //                   bg: '#fff',
+    //                   bgSelected: '../image/cc.png'
+    //                 };
+    //                 items.push(item);
+    //               }
+    //               console.log(JSON.stringify(items));
+    //               vm.open_navigationBar(items);
+    //               console.log(JSON.stringify(ret));
+    //           } else {
+    //               console.log(JSON.stringify(err));
+    //           }
+    //       });
+    //     },
+    //     open_navigationBar: function(items){
+    //       // console.log('2222222222222222222');
+    //       var navigationBar = api.require("navigationBar");
+    //       navigationBar.open({
+    //           y: $api.dom('header').offsetHeight,
+    //           w: api.frameWidth,
+    //           h: 42,
+    //           itemSize: {
+    //               w: 90
+    //           },
+    //           items: items,
+    //           font: {
+    //               size:14,
+    //               sizeSelected: 16,
+    //               color: '#757575',
+    //               colorSelected: '#000033'
+    //           },
+    //           bg: "#f4f4f4",
+    //           fixedOn: api.frameName,
+    //           selectedIndex: 0
+    //       }, function(ret, err) {
+    //           if (ret) {
+    //               var index = ret.index;
+    //               vm.cid = vm.list[index].id;
+    //
+    //               console.log(vm.cid);
+    //               if(vm.is_openFrame == 0){
+    //                 vm.is_openFrame = 1;
+    //                 vm.openFrame_list();
+    //               }
+    //               api.sendEvent({
+    //                   name: 'init_article_list',
+    //                   extra: {
+    //                       cid: vm.cid
+    //                   }
+    //               });
+    //
+    //           } else {
+    //               console.log(JSON.stringify(err));
+    //           }
+    //       });
+    //     },
+    //     // openFrame_list: function(){
+    //     //   api.openFrame({
+    //     //       name: 'sort_article',
+    //     //       url: '../html/sort_article.html',
+    //     //       rect: {
+    //     //         x: 0,
+    //     //         y: $api.dom('header').offsetHeight + 42,
+    //     //         w: 'auto',
+    //     //         h: api.winHeight - $api.dom('header').offsetHeight - 42
+    //     //       },
+    //     //       bounces: true,
+    //     //       pageParam: {
+    //     //         cid: vm.cid
+    //     //       }
+    //     //   });
+    //     // }
+    //   }
+    // });
+
+    apiready = function(){
+      // $api.fixIos7Bar($api.dom('header'));
+      // vm.pid = api.pageParam.pid;
+      // vm.title = api.pageParam.title;
+      // vm.init();
+      // console.log('3333333333333333333333');
+      // function openFrame_list(){
+        api.openFrame({
+            name: 'sort_article',
+            url: '../html/sort_article.html',
+            rect: {
+              x: 0,
+              y: $api.dom('header').offsetHeight + 42,
+              w: 'auto',
+              h: api.winHeight - $api.dom('header').offsetHeight - 42
+            },
+            bounces: true,
+            // pageParam: {
+            //   cid: vm.cid
+            // }
+        });
+      // }
+    };
+  </script>
+</body>
+</html>

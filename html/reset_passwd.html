@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no, email=no, data=no, address=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>忘记密码</title>
+
+  <!--
+  <link rel="stylesheet" href="../css/api.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/aui-flex.css">
+  <link rel="stylesheet" href="../css/aui.2.0.css">
+  -->
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/my.css">
+
+</head>
+<body>
+  <div id="app">
+    <div class="container container-small">
+      <div class="title-block">
+        <h1>
+          重置密码
+        </h1>
+      </div>
+      <form class="form-group" action="">
+        <div class="form-part">
+          <label>手机</label>
+          <input id="phone_num" type="number" class="form-control" onkeyup=this.value = this.value.replace(/\D/gi,"") placeholder="输入手机号">
+        </div>
+        <div class="form-part">
+          <label>验证码</label>
+          <div class="input-group">
+            <input id="vertify_num" type="text" class="form-control" placeholder="输入验证码">
+            <div class="input-group-btn">
+              <div id="vertify_button" class="btn btn-default">获取验证码</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-part">
+          <label>密码</label>
+          <input id="passwd" type="password" class="form-control" placeholder="输入密码">
+        </div>
+        <div class="form-part">
+          <label>重置密码</label>
+          <input class="btn btn-primary btn-block form-control" type="submit" onclick="register();">
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer>
+    © 2019 XXXX 中国互联网举报中心京ICP证xxxx号京ICP备xxxxxxx号-x公安安备
+  </footer>
+</body>
+</html>

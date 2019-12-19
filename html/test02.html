@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no, email=no, data=no, address=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>新用户注册</title>
+
+  <link rel="stylesheet" href="../css/api.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/aui-flex.css">
+  <link rel="stylesheet" href="../css/aui.2.0.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/my.css">
+
+</head>
+<body>
+  <header style="background-color: #ea0c3c !important;" id="header" class="aui-bar aui-bar-nav">
+    <a class="aui-pull-left aui-btn" onclick="closewin();">
+      <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">注册</div>
+    </header>
+  <script src="../script/api.js"></script>
+  <script src="../script/common.js"></script>
+  <script src="../script/vue.js"></script>
+  <script type="text/javascript">
+    apiready = function(){
+      api.openFrame({
+        name: '',
+        url: '../html/reg_form.html',
+        rect: {
+          x: 0,
+          y: $api.dom('header').offsetHeight,
+          w: 'auto',
+          h: api.winHeight - $api.dom('header').offsetHeight
+        },
+        bounces: true
+      });
+    };
+  </script>
+</body>
+</html>
